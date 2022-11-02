@@ -1,0 +1,36 @@
+@import '../../../assets/styles/variables.scss';
+
+.header {
+  position: fixed;
+  width: 100%;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5em;
+  letter-spacing: 0.1em;
+  span {
+    margin-left: 0.3em;
+  }
+}
+
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: $text-primary-color;
+  background-color: transparent;
+}
+
+.mat-icon {
+  width: 2rem !important;
+  height: 2rem !important;
+  line-height: 2rem !important;
+  font-size: 2rem !important;
+}
+
+.mat-icon-button {
+  margin-right: 0.5em;
+}

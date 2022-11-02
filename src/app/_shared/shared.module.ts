@@ -22,24 +22,29 @@ const MaterialModule = [
   MatInputModule,
   MatButtonModule,
   MatIconModule,
-  MatToolbarModule,
   MatTabsModule,
+  MatToolbarModule,
   MatDialogModule,
   MatSelectModule
 ];
+
+const GeneralModule = [
+  CommonModule,
+  RouterModule
+]
 
 @NgModule({
   declarations: [
     HeaderComponent
   ],
   exports: [
-    CommonModule,
-    RouterModule,
-    HeaderComponent,
-    MaterialModule
+    GeneralModule,
+    MaterialModule,
+    HeaderComponent
   ],
   imports: [
-    CommonModule
+    GeneralModule,
+    MaterialModule
   ]
 })
 export class SharedModule { }

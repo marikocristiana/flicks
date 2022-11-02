@@ -13,3 +13,8 @@ body {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}

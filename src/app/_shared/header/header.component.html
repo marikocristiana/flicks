@@ -1,1 +1,31 @@
-<p>header works!</p>
+<header class="header">
+
+  <mat-toolbar>
+    <a class="title">
+      <mat-icon matPrefix>interests</mat-icon>
+      <span>Flicks</span>
+    </a>
+    <div class="menu">
+      <button
+        mat-icon-button
+        [routerLink]="['manage']"
+        routerLinkActive="router-link-active" 
+      >
+        <mat-icon matPrefix>manage_accounts</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        [routerLink]="['profile']"
+        routerLinkActive="router-link-active" 
+      >
+        <mat-icon matPrefix>account_circle</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+      >
+        <mat-icon matPrefix>logout</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+</header>
