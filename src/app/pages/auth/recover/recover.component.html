@@ -1,1 +1,61 @@
-<p>recover works!</p>
+<main class="main">
+  <section class="section">
+    <mat-card>
+      <mat-card-title-group>
+        <mat-card-title>
+          Recover
+        </mat-card-title>
+        <mat-card-subtitle>
+          Let's recover your password!
+        </mat-card-subtitle>
+      </mat-card-title-group>
+      <mat-card-content>
+        <form>
+          <mat-form-field appearance="outline">
+            <mat-label>
+              Email
+            </mat-label>
+            <input
+              matInput
+              #email
+              required
+            >
+            <mat-error>
+              The email is required!
+            </mat-error>
+          </mat-form-field>
+          <button
+            mat-flat-button
+            color="accent"
+            class="submit-button"
+            type="submit"
+          >
+            Recover
+          </button>
+        </form>
+      </mat-card-content>
+      <mat-card-footer>
+        <span>Miscliked?</span>
+        <button
+          mat-button
+          class="link-button"
+          type="button"
+          [routerLink]="['/register']"
+          routerLinkActive="router-link-active" 
+        >
+          Register!
+        </button>
+        <span>or</span>
+        <button
+          mat-button
+          class="link-button"
+          type="button"
+          [routerLink]="['/login']"
+          routerLinkActive="router-link-active" 
+        >
+          Login!
+        </button>
+      </mat-card-footer>
+    </mat-card>
+  </section>
+</main>

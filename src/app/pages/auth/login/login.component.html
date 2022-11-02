@@ -1,1 +1,76 @@
-<p>login works!</p>
+<main class="main">
+  <section class="section">
+    <mat-card>
+      <mat-card-title-group>
+        <mat-card-title>
+          Login
+        </mat-card-title>
+        <mat-card-subtitle>
+          Welcome back!
+        </mat-card-subtitle>
+      </mat-card-title-group>
+      <mat-card-content>
+        <form>
+          <mat-form-field appearance="outline">
+            <mat-label>
+              Email
+            </mat-label>
+            <input
+              matInput
+              #email
+              required
+            >
+            <mat-error>
+              The email is required!
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>
+              Password
+            </mat-label>
+            <input
+              matInput
+              #password
+              required
+            >
+            <mat-error>
+              The password is required!
+            </mat-error>
+          </mat-form-field>
+          <div class="password">
+            <span>Forgot Password?</span>
+            <button
+              mat-button
+              class="link-button"
+              type="button"
+              [routerLink]="['/recover']"
+              routerLinkActive="router-link-active" 
+            >
+              Recover!
+            </button>
+          </div>
+          <button
+            mat-flat-button
+            color="accent"
+            class="submit-button"
+            type="submit"
+          >
+            Login
+          </button>
+        </form>
+      </mat-card-content>
+      <mat-card-footer>
+        <span>New to Flicks?</span>
+        <button
+          mat-button
+          class="link-button"
+          type="button"
+          [routerLink]="['/register']"
+          routerLinkActive="router-link-active" 
+        >
+          Register!
+        </button>
+      </mat-card-footer>
+    </mat-card>
+  </section>
+</main>

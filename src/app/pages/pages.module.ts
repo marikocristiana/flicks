@@ -12,32 +12,29 @@ import { ManageCoursesComponent } from './admin/manage-courses/manage-courses.co
 import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
 import { SharedModule } from '../_shared/shared.module';
 
-const AuthComponents  = [
+const AuthModule  = [
   RegisterComponent,
   LoginComponent,
   RecoverComponent
 ];
 
-const UserComponents  = [
+const UserModule  = [
   CoursesComponent
 ];
 
-const AdminComponents = [
+const AdminModule = [
   ManageCoursesComponent,
   ManageUsersComponent
 ];
 
 @NgModule({
   declarations: [
-    AuthComponents,
+    AuthModule,
+    UserModule,
+    AdminModule,
     HomeComponent,
-    ProfileComponent,
-    UserComponents,
-    AdminComponents
+    ProfileComponent    
   ],
-  imports: [
-    CommonModule,
-    SharedModule
-  ]
+  imports: [SharedModule]
 })
 export class PagesModule { }

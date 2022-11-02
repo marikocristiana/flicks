@@ -1,0 +1,49 @@
+@import './variables.scss';
+
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.link-button {
+  min-width: fit-content;
+  padding: 0 0.5em;
+  color: $accent-darker-color;
+}
+
+.submit-button {
+  width: 100%;
+  padding: 0.5em;
+}
+
+.mat-card {
+
+  box-sizing: border-box;
+  width: 25em;
+  padding: 2em 1.5em;
+
+  &-title {
+    color: $accent-darker-color;
+    font-size: 2em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  &-subtitle {
+    margin: 1em 0 !important;
+  }
+
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+.mat-card-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

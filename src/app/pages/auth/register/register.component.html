@@ -1,1 +1,77 @@
-<p>register works!</p>
+<main class="main">
+  <section class="section">
+    <mat-card>
+      <mat-card-title-group>
+        <mat-card-title>
+          Register
+        </mat-card-title>
+        <mat-card-subtitle>
+          Welcome to Flicks!
+        </mat-card-subtitle>
+      </mat-card-title-group>
+      <mat-card-content>
+        <form>
+          <mat-form-field appearance="outline">
+            <mat-label>
+              Email
+            </mat-label>
+            <input
+              matInput
+              #email
+              required
+            >
+            <mat-error>
+              The email is required!
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>
+              Password
+            </mat-label>
+            <input
+              matInput
+              #password
+              required
+            >
+            <mat-error>
+              The password is required!
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>
+              Confirm Password
+            </mat-label>
+            <input
+              matInput
+              #confirm
+              required
+            >
+            <mat-error>
+              The passwords are not equal!
+            </mat-error>
+          </mat-form-field>
+          <button
+            mat-flat-button
+            color="accent"
+            class="submit-button"
+            type="submit"
+          >
+            Register
+          </button>
+        </form>
+      </mat-card-content>
+      <mat-card-footer>
+        <span>Already a Flicker?</span>
+        <button
+          mat-button
+          class="link-button"
+          type="button"
+          [routerLink]="['/login']"
+          routerLinkActive="router-link-active" 
+        >
+          Login!
+        </button>
+      </mat-card-footer>
+    </mat-card>
+  </section>
+</main>
