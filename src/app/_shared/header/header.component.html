@@ -1,7 +1,10 @@
 <header class="header">
 
   <mat-toolbar>
-    <a class="title">
+    <a
+      class="title"
+      (click)="navigateHome()"
+    >
       <mat-icon matPrefix>interests</mat-icon>
       <span>Flicks</span>
     </a>
@@ -9,7 +12,7 @@
       <button
         mat-icon-button
         [routerLink]="['manage']"
-        routerLinkActive="router-link-active" 
+        routerLinkActive="router-link-active"
       >
         <mat-icon matPrefix>manage_accounts</mat-icon>
       </button>

@@ -70,4 +70,18 @@ export class ProfileComponent implements OnInit {
     else { this.address = null; }
   }
 
+  public submitChanges() {
+    if (
+      this.profileForm.valid &&
+      this.profileForm.dirty
+    ) {
+      this.user['zipcode'] = this.profileForm.get('zipcode')?.value;
+      this.authService.setUserData(this.user).then(
+        () => {
+          window.alert('Profile changes saved sucessfully!');
+        }
+      );
+    }
+  }
+
 }
