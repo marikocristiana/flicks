@@ -8,42 +8,28 @@ import { Router } from '@angular/router';
 // models
 import { User } from 'src/app/_models/user';
 import { Role } from 'src/app/_models/role';
-import { EMPTY, mergeMap } from 'rxjs';
+import { EMPTY, mergeMap, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  public userData: any;
+  private userData: any;
 
   constructor(
     private fireStore: AngularFirestore,
     private fireAuth:  AngularFireAuth,
     private router:    Router
   ) {
-    this.fireAuth.authState.pipe(
-      mergeMap(
-        (user: any) => {
-          if (user) {
-            this.setLocalStorage('user', user);
-            return this.fireStore.doc<User>(`users/${user.email}`).valueChanges();
-          }
-          else {
-            this.removeLocalStorage('user');
-            return EMPTY;
-          }
-        }
-      )
-    ).
-    subscribe(
+    this.getUserData().subscribe(
       (data) => {
         this.userData = data;
       }
     );
   }
 
-  public register(email: string, password: string, role: Role) {
+  public register(email: string, password: string, role: Role): Promise<void> {
     return this.fireAuth.createUserWithEmailAndPassword(email, password)
     .then(
       (result: any) => {
@@ -109,6 +95,23 @@ export class AuthService {
       verified: user.emailVerified ? user.emailVerified : false
     };
     return userData;
+  }
+
+  public getUserData(): Observable<User | undefined> {
+    return this.fireAuth.authState.pipe(
+      mergeMap(
+        (user: any) => {
+          if (user) {
+            this.setLocalStorage('user', user);
+            return this.fireStore.doc<User>(`users/${user.email}`).valueChanges();
+          }
+          else {
+            this.removeLocalStorage('user');
+            return EMPTY;
+          }
+        }
+      )
+    );
   }
 
   public setUserData(user: any): Promise<void> {

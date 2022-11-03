@@ -13,7 +13,7 @@ import { environment } from '../../environments/environment';
 
 // services
 import { AuthService } from './auth/auth.service';
-import { CepService } from './cep/cep.service';
+import { ZipcodeService } from './zipcode/zipcode.service';
 
 const FirebaseModule = [
   AngularFireModule.initializeApp(environment.firebase),
@@ -31,7 +31,7 @@ const FirebaseModule = [
   ],
   providers: [
     AuthService,
-    CepService
+    ZipcodeService
   ]
 })
 export class ServicesModule { }

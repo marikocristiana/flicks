@@ -1,4 +1,4 @@
-<main class="main">
+<main class="main" *ngIf="user?.uid">
   <section class="section">
     <mat-card>
       <mat-card-title-group>
@@ -10,7 +10,9 @@
         </mat-card-subtitle>
       </mat-card-title-group>
       <mat-card-content>
-        <form>
+        <form
+          [formGroup]="profileForm"
+        >
           <mat-tab-group dynamicHeight>
             <mat-tab label="General">
               <mat-form-field appearance="outline">
@@ -20,6 +22,7 @@
                 <input
                   matInput
                   type="email"
+                  formControlName="email"
                   #email
                   readonly
                 >
@@ -31,6 +34,7 @@
                 <input
                   matInput
                   type="text"
+                  formControlName="uid"
                   #uid
                   readonly
                 >
@@ -46,14 +50,21 @@
                 </mat-label>
                 <input
                   matInput
-                  type="number"
+                  type="text"
+                  formControlName="zipcode"
                   #zipcode
                   required
+                  pattern="[0-9]{8}"
+                  (keyup)="searchZipcode(zipcode.value)"
                 >
+                <mat-error>
+                  Zipcode is not valid!
+                </mat-error>
               </mat-form-field>
               <mat-form-field
                 appearance="outline"
                 class="address-field"
+                *ngIf="address && !address.erro"
               >
                 <mat-label>
                   State
@@ -61,6 +72,7 @@
                 <input
                   matInput
                   type="text"
+                  formControlName="state"
                   #state
                   readonly
                 >
@@ -68,6 +80,7 @@
               <mat-form-field
                 appearance="outline"
                 class="address-field"
+                *ngIf="address && !address.erro"
               >
                 <mat-label>
                   City
@@ -75,6 +88,7 @@
                 <input
                   matInput
                   type="text"
+                  formControlName="city"
                   #city
                   readonly
                 >
@@ -82,6 +96,7 @@
               <mat-form-field
                 appearance="outline"
                 class="address-field"
+                *ngIf="address && !address.erro"
               >
                 <mat-label>
                   District
@@ -89,12 +104,14 @@
                 <input
                   matInput
                   type="text"
+                  formControlName="district"
                   #district
                   readonly
                 >
               </mat-form-field>
               <mat-form-field
                 appearance="outline"
+                *ngIf="address && !address.erro"
               >
                 <mat-label>
                   Street
@@ -102,6 +119,7 @@
                 <input
                   matInput
                   type="text"
+                  formControlName="street"
                   #street
                   readonly
                 >
@@ -113,6 +131,7 @@
             color="accent"
             class="submit-button"
             type="submit"
+            [disabled]="address && address.erro || profileForm.pristine"
           >
             Save Changes
           </button>
