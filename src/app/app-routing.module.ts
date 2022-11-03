@@ -14,6 +14,9 @@ import { ManageUsersComponent } from './pages/admin/manage-users/manage-users.co
 // guards
 import { AuthGuard } from './_guard/auth.guard';
 
+// models
+import { Role } from './_models/role';
+
 const routes: Routes = [
   {
     path: '',
@@ -36,6 +39,9 @@ const routes: Routes = [
     path: 'user',
     component: HomeComponent,
     canActivate: [AuthGuard],
+    data: {
+      role: Role.user
+    },
     children: [
       {
         path: 'courses',
@@ -51,6 +57,9 @@ const routes: Routes = [
     path: 'admin',
     component: HomeComponent,
     canActivate: [AuthGuard],
+    data: {
+      role: Role.admin
+    },
     children: [
       {
         path: 'manage',

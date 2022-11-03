@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  public submitLogin() {
+  public submitLogin(): void {
     if (this.loginForm.valid) {
       this.authService.login(
         this.loginForm.get('email')?.value,

@@ -1,31 +1,41 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { EMPTY, first, map, mergeMap } from 'rxjs';
 
 // firebase
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-import { Router } from '@angular/router';
 
 // models
 import { User } from 'src/app/_models/user';
 import { Role } from 'src/app/_models/role';
-import { EMPTY, mergeMap, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private userData: any;
+  public userData: any;
 
   constructor(
     private fireStore: AngularFirestore,
     private fireAuth:  AngularFireAuth,
     private router:    Router
   ) {
-    this.getUserData().subscribe(
-      (data) => {
-        this.userData = data;
-      }
+    this.userData = this.fireAuth.authState
+    .pipe(
+      mergeMap(
+        (user: any) => {
+          if (user) {
+            this.setLocalStorage('user', user);
+            return this.fireStore.doc<User>(`users/${user.email}`).valueChanges();
+          }
+          else {
+            this.removeLocalStorage('user');
+            return EMPTY;
+          }
+        }
+      )
     );
   }
 
@@ -58,15 +68,13 @@ export class AuthService {
   public login(email: string, password: string): Promise<void> {
     return this.fireAuth.signInWithEmailAndPassword(email, password)
     .then(
-      () => {
-        this.fireAuth.authState.subscribe(
+      (result: any) => {
+        this.userData.pipe(first()).subscribe(
           (user: any) => {
-            if (user && this.userData) {
-              user['role']    = this.userData.role;
-              user['zipcode'] = this.userData.zipcode;
-              this.setUserData(user);
-              this.router.navigate([this.userData.role]);
-            }
+            result.user['role']    = user.role;
+            result.user['zipcode'] = user.zipcode;
+            this.setUserData(result.user);
+            this.router.navigate([result.user.role]);
           }
         );
       }
@@ -97,23 +105,6 @@ export class AuthService {
     return userData;
   }
 
-  public getUserData(): Observable<User | undefined> {
-    return this.fireAuth.authState.pipe(
-      mergeMap(
-        (user: any) => {
-          if (user) {
-            this.setLocalStorage('user', user);
-            return this.fireStore.doc<User>(`users/${user.email}`).valueChanges();
-          }
-          else {
-            this.removeLocalStorage('user');
-            return EMPTY;
-          }
-        }
-      )
-    );
-  }
-
   public setUserData(user: any): Promise<void> {
     user = this.formatUser(user);
     return this.fireStore.doc(`users/${user.email}`).set(user, { merge: true });
@@ -131,9 +122,4 @@ export class AuthService {
     localStorage.removeItem(user);
   }
 
-  get emailVerified(): boolean {
-    const  user = this.getLocalStorage('user');
-    return user?.emailVerified ? true : false;
-  }
-  
 }

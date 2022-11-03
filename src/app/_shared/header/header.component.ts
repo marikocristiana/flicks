@@ -17,7 +17,7 @@ export class HeaderComponent implements OnInit {
     private authService: AuthService,
     private router: Router
   ) {
-    this.authService.getUserData().subscribe(
+    this.authService.userData.subscribe(
       (user: any) => {
         this.user = user;
       }

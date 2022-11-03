@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit {
     private authService: AuthService,
     private zipService:  ZipcodeService
   ) {
-    this.authService.getUserData().subscribe(
+    this.authService.userData.subscribe(
       (user: any) => {
         this.user = user;
         this.profileForm.get('email')?.setValue(this.user.email);
