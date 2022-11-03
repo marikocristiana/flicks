@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Role } from 'src/app/_models/role';
 
 // services
 import { AuthService } from 'src/app/_services/auth/auth.service';
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
   public registerForm: FormGroup = this.formBuilder.group(
     {
       email:    ['', [Validators.required, Validators.email]],
-      roles:    ['', [Validators.required]],
+      role:     ['', [Validators.required]],
       password: ['', [Validators.required, PasswordValidator.valid]],
       confirm:  ['', [Validators.required, PasswordValidator.valid]]
     }
@@ -29,7 +30,7 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.registerForm.get('roles')?.setValue('user');
+    this.registerForm.get('role')?.setValue('user');
   }
 
   public submitRegister() {
@@ -37,10 +38,7 @@ export class RegisterComponent implements OnInit {
       this.authService.register(
         this.registerForm.get('email')?.value,
         this.registerForm.get('password')?.value,
-        {
-          user:  this.registerForm.get('roles')?.value.includes('user'),
-          admin: this.registerForm.get('roles')?.value.includes('admin')
-        }
+        this.registerForm.get('role')?.value
       );
     }
   }

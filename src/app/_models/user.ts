@@ -1,8 +1,8 @@
-import { Roles } from "./roles";
+import { Role } from "./role";
 
 export interface User {
   email:    string,
-  roles:    Roles,
+  role:     Role,
   uid:      string,
   zipcode:  string,
   verified: boolean
