@@ -119,13 +119,21 @@ export class AuthService {
     return this.fireStore.doc(`users/${user.email}`).set(user, { merge: true });
   }
 
+  public getLocalStorage(user: string): any {
+    return JSON.parse(localStorage.getItem(user)!);
+  }
+
   public setLocalStorage(user: string, data: any): void {
     localStorage.setItem(user, JSON.stringify(data));
-    JSON.parse(localStorage.getItem(user)!);
   }
 
   public removeLocalStorage(user: string): void {
     localStorage.removeItem(user);
+  }
+
+  get emailVerified(): boolean {
+    const  user = this.getLocalStorage('user');
+    return user?.emailVerified ? true : false;
   }
   
 }
