@@ -1,8 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 // components
 import { HeaderComponent } from './header/header.component';
+
+// services
+import { ServicesModule } from '../_services/services.module';
 
 // material
 import { MatCardModule } from '@angular/material/card';
@@ -14,7 +20,6 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
-import { RouterModule } from '@angular/router';
 
 const MaterialModule = [
   MatCardModule,
@@ -30,7 +35,9 @@ const MaterialModule = [
 
 const GeneralModule = [
   CommonModule,
-  RouterModule
+  RouterModule,
+  HttpClientModule,
+  ReactiveFormsModule
 ]
 
 @NgModule({
@@ -44,7 +51,8 @@ const GeneralModule = [
   ],
   imports: [
     GeneralModule,
-    MaterialModule
+    MaterialModule,
+    ServicesModule
   ]
 })
 export class SharedModule { }
