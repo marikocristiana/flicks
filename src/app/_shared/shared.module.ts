@@ -20,6 +20,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
+import { SearchComponent } from './search/search.component';
+import { CategoryComponent } from './category/category.component';
 
 const MaterialModule = [
   MatCardModule,
@@ -42,12 +44,15 @@ const GeneralModule = [
 
 @NgModule({
   declarations: [
-    HeaderComponent
+    HeaderComponent,
+    SearchComponent,
+    CategoryComponent
   ],
   exports: [
     GeneralModule,
     MaterialModule,
-    HeaderComponent
+    HeaderComponent,
+    SearchComponent
   ],
   imports: [
     GeneralModule,
