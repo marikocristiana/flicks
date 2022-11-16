@@ -21,6 +21,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatSelectModule } from '@angular/material/select';
 import { SearchComponent } from './search/search.component';
+import { MatChipsModule } from '@angular/material/chips';
 
 const MaterialModule = [
   MatCardModule,
@@ -31,7 +32,8 @@ const MaterialModule = [
   MatTabsModule,
   MatToolbarModule,
   MatDialogModule,
-  MatSelectModule
+  MatSelectModule,
+  MatChipsModule
 ];
 
 const GeneralModule = [

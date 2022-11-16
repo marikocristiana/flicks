@@ -1,1 +1,77 @@
-<p>manager works!</p>
+<main class="main">
+  <section class="section">
+    <mat-card class="course">
+      <mat-card-title-group>
+        <mat-card-title>
+          Start your course!
+        </mat-card-title>
+        <mat-card-subtitle>
+          Fill in the required informations and start! I'ts that simple!
+        </mat-card-subtitle>
+      </mat-card-title-group>
+      <mat-card-content>
+        <div class="content">
+
+          <!-- add class creation component -->
+          <div class="media">
+            <mat-icon>movie</mat-icon>
+            <mat-icon>image</mat-icon>
+            <mat-icon>attachment</mat-icon>
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-label>
+              Title
+            </mat-label>
+            <input
+              matInput
+              type="title"
+              #title
+              required
+            >
+            <mat-error>
+              The title is required!
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>
+              Description
+            </mat-label>
+            <textarea
+              matInput
+              #description
+              required
+            ></textarea>
+            <mat-error>
+              The description is required!
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+        <div class="sidebar">
+
+          <!-- add class view component -->
+
+        </div>
+      </mat-card-content>
+      <mat-card-footer>
+        
+        <!-- add chip creation component -->
+        <mat-chip-list>
+          <mat-chip color="primary" selected>category</mat-chip>
+          <mat-chip color="primary" selected>category</mat-chip>
+          <mat-chip color="primary" selected>category</mat-chip>
+          <mat-chip color="primary" selected>category</mat-chip>
+        </mat-chip-list>
+
+        <button
+          mat-flat-button
+          color="accent"
+          type="button"
+        >
+          Save
+        </button>
+
+      </mat-card-footer>
+    </mat-card>
+  </section>
+</main>
