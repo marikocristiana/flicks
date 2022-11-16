@@ -25,7 +25,7 @@ const routes: Routes = [
       routes => routes.AdminRoutingModule
     )
   },
-  { path: '**', redirectTo: 'login' }
+  // { path: '**', redirectTo: 'login' }
 ];
 
 @NgModule({

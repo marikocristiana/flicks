@@ -22,7 +22,7 @@ const childRoutes = [
     },
     children: [
       {
-        path: 'courses',
+        path: '',
         component: CoursesComponent
       },
       {

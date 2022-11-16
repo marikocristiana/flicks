@@ -23,7 +23,7 @@ const childRoutes = [
     },
     children: [
       {
-        path: 'manage',
+        path: '',
         component: ManagerComponent
       },
       {
